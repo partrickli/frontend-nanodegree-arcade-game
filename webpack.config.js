@@ -11,6 +11,14 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
   },
+  module: {
+    rules: [
+      {
+        test: /\.(png|gif|svg|jpg)$/,
+        use: ['file-loader'],
+      },
+    ],
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Udacity Game',

@@ -12,6 +12,16 @@
  * This engine makes the canvas' context (ctx) object globally available to make 
  * writing app.js a little simpler to work with.
  */
+// @ts-ignore
+import StoneBlock from '../images/stone-block.png';
+// @ts-ignore
+import WaterBlock from '../images/water-block.png';
+// @ts-ignore
+import GrassBlock from '../images/grass-block.png';
+// @ts-ignore
+import EnemyBug from '../images/enemy-bug.png';
+// @ts-ignore
+import CharBoy from '../images/char-boy.png';
 
 var Engine = (function(global) {
   /* Predefine the variables we'll be using within this scope,
@@ -169,13 +179,7 @@ var Engine = (function(global) {
      * draw our game level. Then set init as the callback method, so that when
      * all of these images are properly loaded our game will start.
      */
-  Resources.load([
-    'images/stone-block.png',
-    'images/water-block.png',
-    'images/grass-block.png',
-    'images/enemy-bug.png',
-    'images/char-boy.png',
-  ]);
+  Resources.load([StoneBlock, WaterBlock, GrassBlock, EnemyBug, CharBoy]);
   Resources.onReady(init);
 
   /* Assign the canvas' context object to the global variable (the window
