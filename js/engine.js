@@ -22,6 +22,7 @@ import GrassBlock from '../images/grass-block.png';
 import EnemyBug from '../images/enemy-bug.png';
 // @ts-ignore
 import CharBoy from '../images/char-boy.png';
+import { allEnemies, player } from './app';
 
 var Engine = (function(global) {
   /* Predefine the variables we'll be using within this scope,
