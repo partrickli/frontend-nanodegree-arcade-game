@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
+    resources: './js/resources.js',
     engine: './js/engine.js',
   },
   output: {
