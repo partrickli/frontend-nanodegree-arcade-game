@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     resources: './js/resources.js',
     engine: './js/engine.js',
+    app: './js/app.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
