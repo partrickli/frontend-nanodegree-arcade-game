@@ -25,9 +25,15 @@ class Enemy extends Character {
       y: y,
       sprite: EnemyBug,
     });
+    this.speed = this.randomSpeed();
   }
 
-  update() {
+  randomSpeed() {
+    return 50 + Math.random() * 100;
+  }
+
+  update(dt) {
+    this.x += dt * this.speed;
     console.log('update player');
   }
 }
@@ -48,9 +54,12 @@ class Player extends Character {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 
-let allEnemies = [];
-const enemy = new Enemy();
-allEnemies.push(enemy);
+let allEnemies = [...Array(5)].map(() => {
+  return new Enemy({
+    x: 0,
+    y: randomRow() * 50,
+  });
+});
 
 // Place the player object in a variable called player
 const player = new Player();
@@ -69,3 +78,7 @@ document.addEventListener('keyup', function(e) {
 });
 
 export { allEnemies, player };
+
+function randomRow() {
+  return Math.floor(Math.random() * 6);
+}
