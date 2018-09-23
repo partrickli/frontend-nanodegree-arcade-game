@@ -89,7 +89,7 @@ class Player extends Character {
 let allEnemies = [...Array(5)].map(() => {
   return new Enemy({
     x: 0,
-    y: randomRow() * 50,
+    y: randomInteger({ lower: 0, upper: 6 }) * 50,
   });
 });
 
@@ -111,6 +111,10 @@ document.addEventListener('keyup', function(e) {
 
 export { allEnemies, player };
 
-function randomRow() {
-  return Math.floor(Math.random() * 6);
+/**
+ * @description Generate random integer
+ * @param {object} option - upper and lower limit for generated integer
+ */
+function randomInteger({ lower = 0, upper = 100 }) {
+  return Math.floor(Math.random() * (upper - lower)) + lower;
 }
