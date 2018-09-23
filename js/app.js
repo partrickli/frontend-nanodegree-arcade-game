@@ -49,6 +49,38 @@ class Player extends Character {
   update() {
     console.log('update player');
   }
+
+  /**
+   * @description move player according to key board direction
+   * @param {string} direction
+   */
+  handleInput(direction) {
+    const dx = 101;
+    const dy = 83;
+    let boundary = { left: 0, right: 505, up: -50, down: 450 };
+    switch (direction) {
+      case 'left':
+        if (this.x - dx >= boundary.left) {
+          this.x -= dx;
+        }
+        break;
+      case 'up':
+        if (this.y - dy >= boundary.up) {
+          this.y -= dy;
+        }
+        break;
+      case 'right':
+        if (this.x + dx < boundary.right) {
+          this.x += dx;
+        }
+        break;
+      case 'down':
+        if (this.y + dy < boundary.down) {
+          this.y += dy;
+        }
+        break;
+    }
+  }
 }
 
 // Now instantiate your objects.
