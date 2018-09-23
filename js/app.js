@@ -3,44 +3,45 @@ import EnemyBug from '../images/enemy-bug.png';
 // @ts-ignore
 import CharBoy from '../images/char-boy.png';
 
-// Enemies our player must avoid
-var Enemy = function() {
-  // Variables applied to each of our instances go here,
-  // we've provided one for you to get started
+/**
+ * Super class of Enemy and Player
+ */
+class Character {
+  constructor({ x = 0, y = 0, sprite }) {
+    this.x = x;
+    this.y = y;
+    this.sprite = sprite;
+  }
 
-  // The image/sprite for our enemies, this uses
-  // a helper we've provided to easily load images
-  this.sprite = EnemyBug;
-};
+  render() {
+    document.ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  }
+}
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-  // You should multiply any movement by the dt parameter
-  // which will ensure the game runs at the same speed for
-  // all computers.
-};
-
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-  document.ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
-
-class Player {
-  constructor() {
-    this.sprite = CharBoy;
+class Enemy extends Character {
+  constructor({ x = 100, y = 0 } = {}) {
+    super({
+      x: x,
+      y: y,
+      sprite: EnemyBug,
+    });
   }
 
   update() {
     console.log('update player');
   }
+}
+class Player extends Character {
+  constructor({ x = 0, y = 300 } = {}) {
+    super({
+      x: x,
+      y: y,
+      sprite: CharBoy,
+    });
+  }
 
-  render() {
-    console.log('render player');
+  update() {
+    console.log('update player');
   }
 }
 

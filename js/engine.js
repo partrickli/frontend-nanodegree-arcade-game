@@ -119,7 +119,6 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
     var rowImages = [
-        // Todo : replace url with webpack loader
         WaterBlock,
         StoneBlock,
         StoneBlock,
