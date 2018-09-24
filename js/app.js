@@ -2,6 +2,7 @@
 import EnemyBug from '../images/enemy-bug.png';
 // @ts-ignore
 import CharBoy from '../images/char-boy.png';
+import Rectangle from './rectangle';
 
 /**
  * Super class of Enemy and Player
@@ -19,7 +20,7 @@ class Character {
 }
 
 class Enemy extends Character {
-  constructor({ x = 100, y = 0 } = {}) {
+  constructor({ x = 0, y = 80 } = {}) {
     super({
       x: x,
       y: y,
@@ -28,17 +29,27 @@ class Enemy extends Character {
     this.speed = this.randomSpeed();
   }
 
+  // character visible is smaller than the whole image
+  get visibleRect() {
+    return new Rectangle({
+      left: this.x,
+      top: this.y + 75,
+      width: 101,
+      height: 70,
+    });
+  }
+
   randomSpeed() {
-    return 50 + Math.random() * 100;
+    // return 30 + Math.random() * 20;
+    return 0; // for test only
   }
 
   update(dt) {
     this.x += dt * this.speed;
-    console.log('update player');
   }
 }
 class Player extends Character {
-  constructor({ x = 0, y = 300 } = {}) {
+  constructor({ x = 0, y = 0 } = {}) {
     super({
       x: x,
       y: y,
@@ -46,8 +57,18 @@ class Player extends Character {
     });
   }
 
+  // character visible is smaller than the whole image
+  get visibleRect() {
+    return new Rectangle({
+      left: this.x + 16,
+      top: this.y + 60,
+      width: 70,
+      height: 80,
+    });
+  }
+
   update() {
-    console.log('update player');
+    // console.log('update player');
   }
 
   /**
@@ -86,10 +107,11 @@ class Player extends Character {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 
-let allEnemies = [...Array(5)].map(() => {
+let allEnemies = [...Array(1)].map(() => {
   return new Enemy({
     x: 0,
-    y: randomInteger({ lower: 0, upper: 6 }) * 50,
+    // y: randomInteger({ lower: 0, upper: 6 }) * 50,
+    y: 70,
   });
 });
 
