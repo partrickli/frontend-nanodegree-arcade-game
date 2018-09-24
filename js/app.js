@@ -6,20 +6,29 @@ import Rectangle from './rectangle';
 
 const boundary = { left: 0, right: 505, up: -50, down: 450 };
 /**
- * Super class of Enemy and Player
+ * @class Super class of Enemy and Player
  */
 class Character {
+  /**
+   * @constructor intialize position and sprite
+   */
   constructor({ x = 0, y = 0, sprite }) {
     this.x = x;
     this.y = y;
     this.sprite = sprite;
   }
 
+  /**
+   * @description render character
+   */
   render() {
     document.ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
 }
 
+/**
+ * @class Enemy class
+ */
 class Enemy extends Character {
   constructor({ x = 0, y = 80 } = {}) {
     super({
@@ -29,7 +38,9 @@ class Enemy extends Character {
     });
   }
 
-  // character visible is smaller than the whole image
+  /**
+   * @description visible size of enemy is smaller than image size
+   */
   get visibleRect() {
     return new Rectangle({
       left: this.x,
@@ -39,14 +50,23 @@ class Enemy extends Character {
     });
   }
 
+  /**
+   * @description set enemy moving speed
+   */
   setRandomSpeed() {
     this.speed = 30 + Math.random() * 120;
   }
 
+  /**
+   * @description set enemy vertical position
+   */
   setRandomY() {
     this.y = randomInteger({ lower: 1, upper: 4 }) * 80 - 20;
   }
 
+  /**
+   * @description update enemy position, if move out boundary, reset to initial position
+   */
   update(dt) {
     this.x += dt * this.speed;
     // Reset if out of bounds
@@ -57,6 +77,10 @@ class Enemy extends Character {
     }
   }
 }
+
+/**
+ * @class Player class
+ */
 class Player extends Character {
   constructor({ x = 0, y = 400 } = {}) {
     super({
@@ -85,6 +109,9 @@ class Player extends Character {
     });
   }
 
+  /**
+   * @description show win alert when player reaches river block
+   */
   update() {
     const winLabel = document.querySelector('h1');
     winLabel.innerHTML = this.y < 10 ? 'You Win！' : '';

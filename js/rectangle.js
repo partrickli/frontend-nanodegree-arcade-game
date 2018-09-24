@@ -1,3 +1,6 @@
+/**
+ * @class helper class for check collision of enemy and player
+ */
 class Rectangle {
   constructor({ left, top, width, height }) {
     this.left = left;
@@ -6,9 +9,16 @@ class Rectangle {
     this.height = height;
   }
 
+  /**
+   * @description right edge of rectangle
+   */
   get right() {
     return this.left + this.width;
   }
+
+  /**
+   * @description bottom edge of rectangle
+   */
   get bottom() {
     return this.top + this.height;
   }
@@ -32,20 +42,3 @@ class Rectangle {
 }
 
 export default Rectangle;
-
-// Test
-// let rect1 = new Rectangle({
-//   left: 0,
-//   top: 0,
-//   width: 20,
-//   height: 20,
-// });
-
-// let rect2 = new Rectangle({
-//   left: 10,
-//   top: 10,
-//   width: 20,
-//   height: 20,
-// });
-
-// console.log(`conflict: ${rect1.checkConflict(rect2)}`);
