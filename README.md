@@ -13,3 +13,7 @@ Project is configured with webpack for development convenience. So some file is 
 2. Run npm script in project root path, start game on browser.
 
    > npm start
+
+## Syetem
+
+System Version: macOS 10.13.6
