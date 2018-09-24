@@ -4,6 +4,7 @@ import EnemyBug from '../images/enemy-bug.png';
 import CharBoy from '../images/char-boy.png';
 import Rectangle from './rectangle';
 
+const boundary = { left: 0, right: 505, up: -50, down: 450 };
 /**
  * Super class of Enemy and Player
  */
@@ -40,11 +41,17 @@ class Enemy extends Character {
   }
 
   randomSpeed() {
-    return 10 + Math.random() * 30;
+    return 10 + Math.random() * 80;
   }
 
   update(dt) {
     this.x += dt * this.speed;
+    // Reset if out of bounds
+    if (this.x > boundary.right) {
+      this.x = 0;
+      this.y = randomInteger({ lower: 1, upper: 5 }) * 80 - 20;
+      this.speed = this.randomSpeed();
+    }
   }
 }
 class Player extends Character {
@@ -86,7 +93,6 @@ class Player extends Character {
   handleInput(direction) {
     const dx = 101;
     const dy = 83;
-    let boundary = { left: 0, right: 505, up: -50, down: 450 };
     switch (direction) {
       case 'left':
         if (this.x - dx >= boundary.left) {
@@ -118,7 +124,7 @@ class Player extends Character {
 let allEnemies = [...Array(5)].map(() => {
   return new Enemy({
     x: 0,
-    y: randomInteger({ lower: 0, upper: 5 }) * 80 - 20,
+    y: randomInteger({ lower: 1, upper: 5 }) * 80 - 20,
   });
 });
 
