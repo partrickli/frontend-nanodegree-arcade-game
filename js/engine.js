@@ -113,7 +113,7 @@ var Engine = (function(global) {
       return enemy.visibleRect.checkConflict(player.visibleRect);
     });
     if (isCollide) {
-      console.log('Collide');
+      player.reset();
     }
   }
 

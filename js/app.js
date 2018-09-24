@@ -40,8 +40,7 @@ class Enemy extends Character {
   }
 
   randomSpeed() {
-    // return 30 + Math.random() * 20;
-    return 0; // for test only
+    return 10 + Math.random() * 30;
   }
 
   update(dt) {
@@ -49,12 +48,21 @@ class Enemy extends Character {
   }
 }
 class Player extends Character {
-  constructor({ x = 0, y = 0 } = {}) {
+  constructor({ x = 0, y = 400 } = {}) {
     super({
       x: x,
       y: y,
       sprite: CharBoy,
     });
+  }
+
+  /**
+   * Reset player when lose game
+   */
+  reset() {
+    setTimeout(() => {
+      [this.x, this.y] = [0, 400];
+    }, 200);
   }
 
   // character visible is smaller than the whole image
@@ -107,11 +115,10 @@ class Player extends Character {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 
-let allEnemies = [...Array(1)].map(() => {
+let allEnemies = [...Array(5)].map(() => {
   return new Enemy({
     x: 0,
-    // y: randomInteger({ lower: 0, upper: 6 }) * 50,
-    y: 70,
+    y: randomInteger({ lower: 0, upper: 5 }) * 80 - 20,
   });
 });
 
