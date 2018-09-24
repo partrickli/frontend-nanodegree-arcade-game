@@ -27,7 +27,6 @@ class Enemy extends Character {
       y: y,
       sprite: EnemyBug,
     });
-    this.speed = this.randomSpeed();
   }
 
   // character visible is smaller than the whole image
@@ -40,8 +39,12 @@ class Enemy extends Character {
     });
   }
 
-  randomSpeed() {
-    return 10 + Math.random() * 80;
+  setRandomSpeed() {
+    this.speed = 30 + Math.random() * 120;
+  }
+
+  setRandomY() {
+    this.y = randomInteger({ lower: 1, upper: 4 }) * 80 - 20;
   }
 
   update(dt) {
@@ -49,8 +52,8 @@ class Enemy extends Character {
     // Reset if out of bounds
     if (this.x > boundary.right) {
       this.x = 0;
-      this.y = randomInteger({ lower: 1, upper: 5 }) * 80 - 20;
-      this.speed = this.randomSpeed();
+      this.setRandomSpeed();
+      this.setRandomY();
     }
   }
 }
@@ -123,10 +126,10 @@ class Player extends Character {
 // Place all enemy objects in an array called allEnemies
 
 let allEnemies = [...Array(5)].map(() => {
-  return new Enemy({
-    x: 0,
-    y: randomInteger({ lower: 1, upper: 5 }) * 80 - 20,
-  });
+  const enemy = new Enemy();
+  enemy.setRandomY();
+  enemy.setRandomSpeed();
+  return enemy;
 });
 
 // Place the player object in a variable called player
