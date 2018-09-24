@@ -83,7 +83,8 @@ class Player extends Character {
   }
 
   update() {
-    // console.log('update player');
+    const winLabel = document.querySelector('h1');
+    winLabel.innerHTML = this.y < 10 ? 'You Win！' : '';
   }
 
   /**

@@ -39,6 +39,9 @@ var Engine = (function(global) {
   canvas.width = 505;
   canvas.height = 606;
   doc.body.appendChild(canvas);
+  // winner label
+  const winLabel = doc.createElement('h1');
+  doc.body.appendChild(winLabel);
 
   /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
